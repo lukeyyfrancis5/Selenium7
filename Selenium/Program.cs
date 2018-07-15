@@ -32,17 +32,20 @@ namespace Selenium
         [Test]
         public void ExecuteTest()
         {
+            // Title
+            SeleniumSetMethods.SelectDropDown(driver, "TitleId", "Mr.", "Id");
 
-            // Enter Text(element, value, type)
+            //Intial
+            SeleniumSetMethods.EnterText(driver, "Initial", "executeautomation", "Name");
+
+            Console.WriteLine("The value from my Title is: ", SeleniumGetMethods.GetText(driver, "TitleId", "Id"));
+            Console.WriteLine("The value from my Initial is:", SeleniumGetMethods.GetText(driver, "Initial", "Id"));
+
+            // Click
+            SeleniumSetMethods.Click(driver, "Save", "Name");
 
 
 
-            // Find the Element
-            IWebElement element = driver.FindElement(By.Name("q"));
-
-            // Preform Ops
-            element.SendKeys("execute automation");
-            Console.WriteLine("Execute Test");
         }
 
         [Test]
