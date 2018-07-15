@@ -11,8 +11,8 @@ namespace Selenium
 {
     class Program
     {
-        // Create the reference for Browser
-        IWebDriver driver = new ChromeDriver();
+        
+        
 
         static void Main(string[] args)
         {
@@ -23,8 +23,11 @@ namespace Selenium
         [SetUp]
         public void Intialize()
         {
+            // Create the reference for Browser
+            PropertiesCollection.driver = new ChromeDriver();
+
             // Navigate to Google page
-            driver.Navigate().GoToUrl("executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login");
+            PropertiesCollection.driver.Navigate().GoToUrl("executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login");
             Console.WriteLine("Open URL");
         }
 
@@ -33,19 +36,16 @@ namespace Selenium
         public void ExecuteTest()
         {
             // Title
-            SeleniumSetMethods.SelectDropDown(driver, "TitleId", "Mr.", "Id");
+            SeleniumSetMethods.SelectDropDown("TitleId", "Mr.", PropertyType.Id);
 
             //Intial
-            SeleniumSetMethods.EnterText(driver, "Initial", "executeautomation", "Name");
+            SeleniumSetMethods.EnterText("Initial", "executeautomation", PropertyType.Name);
 
-            Console.WriteLine("The value from my Title is: ", SeleniumGetMethods.GetText(driver, "TitleId", "Id"));
-            Console.WriteLine("The value from my Initial is:", SeleniumGetMethods.GetText(driver, "Initial", "Id"));
+            Console.WriteLine("The value from my Title is: ", SeleniumGetMethods.GetText("TitleId", PropertyType.Id));
+            Console.WriteLine("The value from my Initial is:", SeleniumGetMethods.GetText("Initial", PropertyType.Name));
 
             // Click
-            SeleniumSetMethods.Click(driver, "Save", "Name");
-
-
-
+            SeleniumSetMethods.Click("Save", PropertyType.Name);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace Selenium
         public void Cleanup()
         {
             // Quit
-            driver.Close();
+            PropertiesCollection.driver.Close();
             Console.WriteLine("Close Browser");
 
         }
