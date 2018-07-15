@@ -35,17 +35,26 @@ namespace Selenium
         [Test]
         public void ExecuteTest()
         {
-            // Title
-            SeleniumSetMethods.SelectDropDown("TitleId", "Mr.", PropertyType.Id);
+            
+            // Initialize page by calling its reference
+            EAPageObject page = new EAPageObject();
 
-            //Intial
-            SeleniumSetMethods.EnterText("Initial", "executeautomation", PropertyType.Name);
+            page.textInitial.SendKeys("executeautomation");
+            page.btnSave.Click();
 
-            Console.WriteLine("The value from my Title is: ", SeleniumGetMethods.GetText("TitleId", PropertyType.Id));
-            Console.WriteLine("The value from my Initial is:", SeleniumGetMethods.GetText("Initial", PropertyType.Name));
 
-            // Click
-            SeleniumSetMethods.Click("Save", PropertyType.Name);
+
+            //// Title
+            //SeleniumSetMethods.SelectDropDown("TitleId", "Mr.", PropertyType.Id);
+
+            ////Intial
+            //SeleniumSetMethods.EnterText("Initial", "executeautomation", PropertyType.Name);
+
+            //Console.WriteLine("The value from my Title is: ", SeleniumGetMethods.GetText("TitleId", PropertyType.Id));
+            //Console.WriteLine("The value from my Initial is:", SeleniumGetMethods.GetText("Initial", PropertyType.Name));
+
+            //// Click
+            //SeleniumSetMethods.Click("Save", PropertyType.Name);
         }
 
         [Test]
