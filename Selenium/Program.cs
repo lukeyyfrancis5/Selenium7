@@ -27,7 +27,7 @@ namespace Selenium
             PropertiesCollection.driver = new ChromeDriver();
 
             // Navigate to Google page
-            PropertiesCollection.driver.Navigate().GoToUrl("executeautomation.com/demosite/index.html?UserName=&Password=&Login=Login");
+            PropertiesCollection.driver.Navigate().GoToUrl("http://executeautomation.com/demosite/Login.html");
             Console.WriteLine("Open URL");
         }
 
@@ -35,13 +35,11 @@ namespace Selenium
         [Test]
         public void ExecuteTest()
         {
-            
-            // Initialize page by calling its reference
-            EAPageObject page = new EAPageObject();
+            // Log into application
+            LoginPageObject pageLogin = new LoginPageObject();
+            EAPageObject pageEA = pageLogin.Login("execute", "automation");
 
-            page.textInitial.SendKeys("executeautomation");
-            page.btnSave.Click();
-
+            pageEA.FillUserForm("LF", "Luke", "Brandon");
 
 
             //// Title
